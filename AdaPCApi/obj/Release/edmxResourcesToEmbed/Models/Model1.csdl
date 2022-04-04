@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AdaProcessModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="StockMaster">
+    <Key>
+      <PropertyRef Name="Part_number" />
+      <PropertyRef Name="Part_name" />
+      <PropertyRef Name="Stock_Total" />
+    </Key>
+    <Property Name="No_" Type="Int64" />
+    <Property Name="Part_number" Type="Int32" Nullable="false" />
+    <Property Name="Part_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Stock_Total" Type="Double" Nullable="false" />
+    <Property Name="Part_unit" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Add_by" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="StockTransaction">
+    <Key>
+      <PropertyRef Name="Transaction_ID" />
+      <PropertyRef Name="Part_Number" />
+      <PropertyRef Name="Transaction_type" />
+    </Key>
+    <Property Name="No_" Type="Int64" />
+    <Property Name="Transaction_ID" Type="Int32" Nullable="false" />
+    <Property Name="Part_Number" Type="Int32" Nullable="false" />
+    <Property Name="Part_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Transaction_type" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Transaction_volume" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Transaction_note" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Transaction_Date" Type="DateTime" Precision="3" />
+    <Property Name="Transaction_by" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityContainer Name="AdaProcessEntities2" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="StockMaster" EntityType="Self.StockMaster" />
+    <EntitySet Name="StockTransaction" EntityType="Self.StockTransaction" />
+  </EntityContainer>
+</Schema>

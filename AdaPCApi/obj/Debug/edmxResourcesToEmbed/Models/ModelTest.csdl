@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AdaProcessModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="TPCMStkMst">
+    <Key>
+      <PropertyRef Name="FNStkMstID" />
+    </Key>
+    <Property Name="FNStkMstID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FTStkMstNme" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FTStkMstNte" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="FCStkMstTtl" Type="Double" Nullable="false" />
+    <Property Name="FNStkUntID" Type="Int32" Nullable="false" />
+    <Property Name="FNUsrID" Type="Int32" Nullable="false" />
+    <Property Name="FDStkMstDteAdd" Type="DateTime" Nullable="false" Precision="0" />
+  </EntityType>
+  <EntityContainer Name="AdaProcessEntities9" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="TPCMStkMst" EntityType="Self.TPCMStkMst" />
+  </EntityContainer>
+</Schema>

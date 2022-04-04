@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AdaProcessModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="TPCMStkMst">
+    <Key>
+      <PropertyRef Name="FNStkMstID" />
+    </Key>
+    <Property Name="FNStkMstID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FTStkMstNme" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FTStkMstNte" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="FCStkMstTtl" Type="Double" Nullable="false" />
+    <Property Name="FNStkUntID" Type="Int32" Nullable="false" />
+    <Property Name="FNUsrID" Type="Int32" Nullable="false" />
+    <Property Name="FDStkMstDteAdd" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="TPCTStkTsc" Relationship="Self.FK_TPCTStkTsc_TPCMStkMst" FromRole="TPCMStkMst" ToRole="TPCTStkTsc" />
+  </EntityType>
+  <EntityType Name="TPCTStkTsc">
+    <Key>
+      <PropertyRef Name="FNStkTscID" />
+    </Key>
+    <Property Name="FNStkTscID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FNStkMstID" Type="Int32" Nullable="false" />
+    <Property Name="FNStkTscTyp" Type="Int32" />
+    <Property Name="FTStkTscVol" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FTStkTscNte" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="FDStkTscDte" Type="DateTime" Precision="3" />
+    <Property Name="FNUsrID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="TPCMStkMst" Relationship="Self.FK_TPCTStkTsc_TPCMStkMst" FromRole="TPCTStkTsc" ToRole="TPCMStkMst" />
+  </EntityType>
+  <Association Name="FK_TPCTStkTsc_TPCMStkMst">
+    <End Role="TPCMStkMst" Type="Self.TPCMStkMst" Multiplicity="1" />
+    <End Role="TPCTStkTsc" Type="Self.TPCTStkTsc" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TPCMStkMst">
+        <PropertyRef Name="FNStkMstID" />
+      </Principal>
+      <Dependent Role="TPCTStkTsc">
+        <PropertyRef Name="FNStkMstID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="AdaProcessEntities4" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="TPCMStkMst" EntityType="Self.TPCMStkMst" />
+    <EntitySet Name="TPCTStkTsc" EntityType="Self.TPCTStkTsc" />
+    <AssociationSet Name="FK_TPCTStkTsc_TPCMStkMst" Association="Self.FK_TPCTStkTsc_TPCMStkMst">
+      <End Role="TPCMStkMst" EntitySet="TPCMStkMst" />
+      <End Role="TPCTStkTsc" EntitySet="TPCTStkTsc" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

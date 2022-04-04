@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="AdaProcessModel1StoreContainer" CdmEntityContainer="AdaProcessEntities7">
+    <EntitySetMapping Name="TPCMStkMst">
+      <EntityTypeMapping TypeName="AdaProcessModel1.TPCMStkMst">
+        <MappingFragment StoreEntitySet="TPCMStkMst">
+          <ScalarProperty Name="FNStkMstID" ColumnName="FNStkMstID" />
+          <ScalarProperty Name="FTStkMstNme" ColumnName="FTStkMstNme" />
+          <ScalarProperty Name="FTStkMstNte" ColumnName="FTStkMstNte" />
+          <ScalarProperty Name="FCStkMstTtl" ColumnName="FCStkMstTtl" />
+          <ScalarProperty Name="FNStkUntID" ColumnName="FNStkUntID" />
+          <ScalarProperty Name="FNUsrID" ColumnName="FNUsrID" />
+          <ScalarProperty Name="FDStkMstDteAdd" ColumnName="FDStkMstDteAdd" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TPCTStkTsc">
+      <EntityTypeMapping TypeName="AdaProcessModel1.TPCTStkTsc">
+        <MappingFragment StoreEntitySet="TPCTStkTsc">
+          <ScalarProperty Name="FNStkTscID" ColumnName="FNStkTscID" />
+          <ScalarProperty Name="FNStkMstID" ColumnName="FNStkMstID" />
+          <ScalarProperty Name="FNStkTscTyp" ColumnName="FNStkTscTyp" />
+          <ScalarProperty Name="FTStkTscVol" ColumnName="FTStkTscVol" />
+          <ScalarProperty Name="FTStkTscNte" ColumnName="FTStkTscNte" />
+          <ScalarProperty Name="FDStkTscDte" ColumnName="FDStkTscDte" />
+          <ScalarProperty Name="FNUsrID" ColumnName="FNUsrID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

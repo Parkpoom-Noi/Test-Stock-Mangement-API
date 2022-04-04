@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AdaProcessModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="TPCMStkMst">
+    <Key>
+      <PropertyRef Name="FNStkMstID" />
+    </Key>
+    <Property Name="FNStkMstID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FTStkMstNme" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="FTStkMstNte" Type="text" />
+    <Property Name="FCStkMstTtl" Type="float" Nullable="false" />
+    <Property Name="FNStkUntID" Type="int" Nullable="false" />
+    <Property Name="FNUsrID" Type="int" Nullable="false" />
+    <Property Name="FDStkMstDteAdd" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TPCTStkTsc">
+    <Key>
+      <PropertyRef Name="FNStkTscID" />
+    </Key>
+    <Property Name="FNStkTscID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FNStkMstID" Type="int" Nullable="false" />
+    <Property Name="FNStkTscTyp" Type="int" />
+    <Property Name="FTStkTscVol" Type="nvarchar" MaxLength="50" />
+    <Property Name="FTStkTscNte" Type="text" />
+    <Property Name="FDStkTscDte" Type="datetime" />
+    <Property Name="FNUsrID" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_TPCTStkTsc_TPCMStkMst">
+    <End Role="TPCMStkMst" Type="Self.TPCMStkMst" Multiplicity="1" />
+    <End Role="TPCTStkTsc" Type="Self.TPCTStkTsc" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TPCMStkMst">
+        <PropertyRef Name="FNStkMstID" />
+      </Principal>
+      <Dependent Role="TPCTStkTsc">
+        <PropertyRef Name="FNStkMstID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="AdaProcessModel1StoreContainer">
+    <EntitySet Name="TPCMStkMst" EntityType="Self.TPCMStkMst" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TPCTStkTsc" EntityType="Self.TPCTStkTsc" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_TPCTStkTsc_TPCMStkMst" Association="Self.FK_TPCTStkTsc_TPCMStkMst">
+      <End Role="TPCMStkMst" EntitySet="TPCMStkMst" />
+      <End Role="TPCTStkTsc" EntitySet="TPCTStkTsc" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

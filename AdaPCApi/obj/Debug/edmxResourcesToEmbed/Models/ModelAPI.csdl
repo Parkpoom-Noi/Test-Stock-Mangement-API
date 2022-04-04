@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AdaProcessModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="TPCMStkMst">
+    <Key>
+      <PropertyRef Name="FNStkMstID" />
+    </Key>
+    <Property Name="FNStkMstID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FTStkMstNme" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FTStkMstNte" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="FCStkMstTtl" Type="Double" Nullable="false" />
+    <Property Name="FNStkUntID" Type="Int32" Nullable="false" />
+    <Property Name="FNUsrID" Type="Int32" Nullable="false" />
+    <Property Name="FDStkMstDteAdd" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="TPCTStkTsc" Relationship="Self.FK_TPCTStkTsc_TPCMStkMst" FromRole="TPCMStkMst" ToRole="TPCTStkTsc" />
+  </EntityType>
+  <EntityType Name="TPCTStkTsc">
+    <Key>
+      <PropertyRef Name="FNStkTscID" />
+    </Key>
+    <Property Name="FNStkTscID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FNStkMstID" Type="Int32" Nullable="false" />
+    <Property Name="FNStkTscTyp" Type="Int32" />
+    <Property Name="FTStkTscVol" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FTStkTscNte" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="FDStkTscDte" Type="DateTime" Precision="3" />
+    <Property Name="FNUsrID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="TPCMStkMst" Relationship="Self.FK_TPCTStkTsc_TPCMStkMst" FromRole="TPCTStkTsc" ToRole="TPCMStkMst" />
+  </EntityType>
+  <EntityType Name="StockMaster">
+    <Key>
+      <PropertyRef Name="Part_number" />
+      <PropertyRef Name="Part_name" />
+      <PropertyRef Name="Stock_Total" />
+    </Key>
+    <Property Name="No_" Type="Int64" />
+    <Property Name="Part_number" Type="Int32" Nullable="false" />
+    <Property Name="Part_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Stock_Total" Type="Double" Nullable="false" />
+    <Property Name="Part_unit" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Add_by" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="StockTransaction">
+    <Key>
+      <PropertyRef Name="Transaction_ID" />
+      <PropertyRef Name="Part_Number" />
+      <PropertyRef Name="Transaction_type" />
+    </Key>
+    <Property Name="No_" Type="Int64" />
+    <Property Name="Transaction_ID" Type="Int32" Nullable="false" />
+    <Property Name="Part_Number" Type="Int32" Nullable="false" />
+    <Property Name="Part_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Transaction_type" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Transaction_volume" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Transaction_note" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Transaction_Date" Type="DateTime" Precision="3" />
+    <Property Name="Transaction_by" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <Association Name="FK_TPCTStkTsc_TPCMStkMst">
+    <End Role="TPCMStkMst" Type="Self.TPCMStkMst" Multiplicity="1" />
+    <End Role="TPCTStkTsc" Type="Self.TPCTStkTsc" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TPCMStkMst">
+        <PropertyRef Name="FNStkMstID" />
+      </Principal>
+      <Dependent Role="TPCTStkTsc">
+        <PropertyRef Name="FNStkMstID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="AdaProcessEntities8" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="TPCMStkMst" EntityType="Self.TPCMStkMst" />
+    <EntitySet Name="TPCTStkTsc" EntityType="Self.TPCTStkTsc" />
+    <EntitySet Name="StockMaster" EntityType="Self.StockMaster" />
+    <EntitySet Name="StockTransaction" EntityType="Self.StockTransaction" />
+    <AssociationSet Name="FK_TPCTStkTsc_TPCMStkMst" Association="Self.FK_TPCTStkTsc_TPCMStkMst">
+      <End Role="TPCMStkMst" EntitySet="TPCMStkMst" />
+      <End Role="TPCTStkTsc" EntitySet="TPCTStkTsc" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

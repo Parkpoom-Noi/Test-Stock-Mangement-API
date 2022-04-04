@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="AdaProcessModelStoreContainer" CdmEntityContainer="AdaProcessEntities2">
+    <EntitySetMapping Name="StockMaster">
+      <EntityTypeMapping TypeName="AdaProcessModel.StockMaster">
+        <MappingFragment StoreEntitySet="StockMaster">
+          <ScalarProperty Name="No_" ColumnName="No." />
+          <ScalarProperty Name="Part_number" ColumnName="Part number" />
+          <ScalarProperty Name="Part_name" ColumnName="Part name" />
+          <ScalarProperty Name="Stock_Total" ColumnName="Stock Total" />
+          <ScalarProperty Name="Part_unit" ColumnName="Part unit" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="Add_by" ColumnName="Add by" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StockTransaction">
+      <EntityTypeMapping TypeName="AdaProcessModel.StockTransaction">
+        <MappingFragment StoreEntitySet="StockTransaction">
+          <ScalarProperty Name="No_" ColumnName="No." />
+          <ScalarProperty Name="Transaction_ID" ColumnName="Transaction ID" />
+          <ScalarProperty Name="Part_Number" ColumnName="Part Number" />
+          <ScalarProperty Name="Part_name" ColumnName="Part name" />
+          <ScalarProperty Name="Transaction_type" ColumnName="Transaction type" />
+          <ScalarProperty Name="Transaction_volume" ColumnName="Transaction volume" />
+          <ScalarProperty Name="Transaction_note" ColumnName="Transaction note" />
+          <ScalarProperty Name="Transaction_Date" ColumnName="Transaction Date" />
+          <ScalarProperty Name="Transaction_by" ColumnName="Transaction by" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

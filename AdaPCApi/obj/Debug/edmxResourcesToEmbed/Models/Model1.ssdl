@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AdaProcessModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'AdaProcess.dbo.StockMaster' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="StockMaster">
+    <Key>
+      <PropertyRef Name="Part number" />
+      <PropertyRef Name="Part name" />
+      <PropertyRef Name="Stock Total" />
+    </Key>
+    <Property Name="No." Type="bigint" />
+    <Property Name="Part number" Type="int" Nullable="false" />
+    <Property Name="Part name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Stock Total" Type="float" Nullable="false" />
+    <Property Name="Part unit" Type="nvarchar" MaxLength="10" />
+    <Property Name="Note" Type="text" />
+    <Property Name="Add by" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'AdaProcess.dbo.StockTransaction' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="StockTransaction">
+    <Key>
+      <PropertyRef Name="Transaction ID" />
+      <PropertyRef Name="Part Number" />
+      <PropertyRef Name="Transaction type" />
+    </Key>
+    <Property Name="No." Type="bigint" />
+    <Property Name="Transaction ID" Type="int" Nullable="false" />
+    <Property Name="Part Number" Type="int" Nullable="false" />
+    <Property Name="Part name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Transaction type" Type="varchar" MaxLength="8" Nullable="false" />
+    <Property Name="Transaction volume" Type="nvarchar" MaxLength="50" />
+    <Property Name="Transaction note" Type="text" />
+    <Property Name="Transaction Date" Type="datetime" />
+    <Property Name="Transaction by" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityContainer Name="AdaProcessModelStoreContainer">
+    <EntitySet Name="StockMaster" EntityType="Self.StockMaster" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [StockMaster].[No.] AS [No.], 
+    [StockMaster].[Part number] AS [Part number], 
+    [StockMaster].[Part name] AS [Part name], 
+    [StockMaster].[Stock Total] AS [Stock Total], 
+    [StockMaster].[Part unit] AS [Part unit], 
+    [StockMaster].[Note] AS [Note], 
+    [StockMaster].[Add by] AS [Add by]
+    FROM [dbo].[StockMaster] AS [StockMaster]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="StockTransaction" EntityType="Self.StockTransaction" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [StockTransaction].[No.] AS [No.], 
+    [StockTransaction].[Transaction ID] AS [Transaction ID], 
+    [StockTransaction].[Part Number] AS [Part Number], 
+    [StockTransaction].[Part name] AS [Part name], 
+    [StockTransaction].[Transaction type] AS [Transaction type], 
+    [StockTransaction].[Transaction volume] AS [Transaction volume], 
+    [StockTransaction].[Transaction note] AS [Transaction note], 
+    [StockTransaction].[Transaction Date] AS [Transaction Date], 
+    [StockTransaction].[Transaction by] AS [Transaction by]
+    FROM [dbo].[StockTransaction] AS [StockTransaction]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>
